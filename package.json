@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
-    "axios": "^1.8.4"
+    "Axios": "^1.8.4"
   }
 }
