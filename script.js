@@ -46,7 +46,40 @@ document.addEventListener("DOMContentLoaded", function() {
             outputBox.value = "An error occurred. Please try again.";
         }
     });
+
+    // Reset the form when the reset button is clicked
+    resetButton.addEventListener("click", function() {
+        inputBox.style.width = "100%"; // Reset input box to default size
+        inputBox.style.position = "relative"; // Reset position
+        inputBox.value = ""; // Clear input box
+        outputBox.style.display = "none"; // Hide output box
+        outputBox.value = ""; // Clear output box
+        resetButton.style.display = "none"; // Hide reset button
+    });
+
 });
+
+function scrollToInput() {
+    const inputSection = document.getElementById("inputSection"); // wrap input area in this ID
+    if (inputSection) {
+      inputSection.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+  
+  function showInputSection() {
+    document.getElementById("heroSection").classList.add("hidden");
+    document.getElementById("inputSection").classList.remove("hidden");
+    // Show the back button when input section is active
+    document.querySelector(".back-button").style.display = "block";
+}
+
+function goBack() {
+    document.getElementById("inputSection").classList.add("hidden");
+    document.getElementById("heroSection").classList.remove("hidden");
+    // Hide the back button when going back to the hero section
+    document.querySelector(".back-button").style.display = "none";
+}
+
 
 
 const backendUrl = "https://code-summarizer-101.vercel.app/"; 

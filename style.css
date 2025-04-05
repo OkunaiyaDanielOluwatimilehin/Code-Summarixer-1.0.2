@@ -1,30 +1,21 @@
-@import 
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
 
-url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
-
-
-*{
+* {
     padding: 0;
     margin: 0;
-    box-sizing: border-box
+    box-sizing: border-box;
 }
 
 body {
-    
     font-family: "League Spartan", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
     background-image: url('./wesley-ford-biBRoGc7ir0-unsplash.jpg'), linear-gradient(75deg, rgba(0, 18, 122, 0.747) 20%, rgba(11,150,141,1) 50%, rgba(141,0,255,1) 100%);
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat; 
-    background-attachment: fixed; 
-    background-blend-mode: overlay; 
-    margin: 0;
-    padding: 0; 
-    height: 100vh; 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-blend-mode: overlay;
+    height: 100vh;
 }
-
 
 #navbar {
     width: 100%;
@@ -32,7 +23,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -42,128 +32,149 @@ body {
     color: white;
     font-size: 24px;
     font-weight: bold;
-    margin: 0;
 }
 
 #navLinks {
     list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
-    align-items: center;
-}
-
-#navLinks li {
-    margin-left: 20px; /* Adjust spacing between links */
+    gap: 20px;
 }
 
 #navLinks a {
     color: white;
     text-decoration: none;
     font-size: 16px;
-    padding: 8px 12px;
-    border-radius: 4px;
 }
 
-
-#app {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+/* Hero Styling */
+.hero {
     height: 100vh;
-    width: 100%;
-    text-align: center; /* Center-align text within the container */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 2rem;
 }
 
-/* Container Styling */
-#textBoxWrapper {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60%;
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    background-color: #ff6b6b;
+    color: white;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #ff4c4c;
+}
+
+.hidden {
+    display: none;
+}
+
+#inputSection {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 50px;
+    flex-direction: column;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    min-height: 100vh;
+    color: white;
+    text-align: center;
 }
 
 #inputContainer {
     position: relative;
-    width: 150%;
-}
-
-textarea {
+    max-width: 1000px; /* Increased max-width */
+    width: 95%;         /* Take up more screen space */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  textarea {
     width: 100%;
-    height: 300px;
+    height: 400px;
     padding: 20px;
-    padding-right: 60px; /* Space for button inside textarea */
+    padding-right: 120px; /* Space for the button */
+    padding-bottom: 60px; /* Space for the summarize/reset button */
     border: 1px solid #ccc;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.1);
     color: #ffffff;
     font-size: 16px;
     resize: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    position: relative;
 }
-
-textarea::placeholder {
-    color: #cccccc;
-}
-
-#outputBox {
-    display: none;
-    width: 100%;
-    height: 250px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-    color: #333;
-    font-size: 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Button Styling Inside Text Area */
-#submitButton {
+  #submitButton {
     position: absolute;
-    right: 10px;
-    bottom: 10px;
-    padding: 10px 15px;
-    font-size: 16px;
-    border-radius: 5px;
+    bottom: 40px;
+    right: 40px;
+    padding: 10px 20px;
+    font-size: 15px;
+    border-radius: 6px;
     background-color: #007bff;
     color: white;
     border: none;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    transition: background-color 0.3s ease;
+  }
+  
+  #submitButton:hover {
+    background-color: #0056b3;
+  }
+  
+  #resetButton {
+    margin-top: 10px;
+    padding: 10px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #dc3545;
+    color: white;
+    cursor: pointer;
+    display: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  #resetButton:hover {
+    background-color: #c82333;
+  }
+  
+/* Initially hide the back button */
+.back-button {
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    background-color: #fff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-#submitButton:hover {
-    background-color: #0056b3;
-}
-
-#submitButton:focus {
-    outline: 2px solid #0056b3;
-}
-
-/* Style for the output box */
-#outputBox {
-    display: none; /* Initially hidden */
-    background-color: transparent; 
-    color: #ffffff; /* Dark grey text */
-    border: 1px solid #ccc; /* Light border */
-    padding: 10px;
-    font-size: 16px;
-    resize: vertical;
-    width: 100%;
-    height: 250px;
-}
-
-/* Show the output box when needed */
-#outputBox.show {
-    visibility: visible;
-    opacity: 1;
+.back-button:hover {
+    background-color: #555;
 }
