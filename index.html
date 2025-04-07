@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text Summarizer</title>
-    <link rel="stylesheet" href="style.css">   
-
-
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav id="navbar">
@@ -17,31 +15,33 @@
             <li><a href="#about">About</a></li>
         </ul>
     </nav>
-     <!-- Hero Section -->
-
-     <section class="hero" id="home">
+    <!-- Hero Section -->
+    <section class="hero" id="heroSection">
         <div class="hero-content">
-          <h1>Simplify Your Code. Instantly.</h1>
-          <p>Paste your code, and let AI do the hard work. Get clean summaries in seconds.</p>
-          <button class="cta-button" onclick="showInputSection()">Get Started</button>
+            <h1>Simplify Your Code. Instantly.</h1>
+            <p>Paste your code, and let AI do the hard work. Get clean summaries in seconds.</p>
+            <button id="getStartedButton">Get Started</button> <!-- The "Get Started" button -->
         </div>
     </section>
-        
-    <section id="inputSection"class="hidden">
-            <button class="back-button" onclick="goBack()">← Back</button>
-        <div id="inputContainer">
-            <textarea id="inputBox" placeholder="Enter your text here..."></textarea>
-            <button id="submitButton">Summarize</button>
-            <button id="resetButton" style="display:none;">Reset</button>
-        </div>
-        <textarea id="outputBox" placeholder="Summary will appear here..." readonly  class="hidden"></textarea>
-    </div>
-    </section>
-  
 
-   
-      
-    
+    <!-- Input Section (Initially Hidden) -->
+<section id="inputSection" class="hidden">
+    <div id="inputContainer">
+        <textarea id="inputBox" placeholder="Enter your text here..."></textarea>
+        <div id="buttonContainer">
+            <button id="submitButton">Summarize</button>
+            <button class="back-button" onclick="goBack()">← Back</button>
+        </div>
+    </div>
+    <!-- Output Box -->
+    <div id="outputContainer">
+        <textarea id="outputBox" placeholder="Summary will appear here..." readonly class="hidden"></textarea>
+        <!-- Reset Button Inside the Output Box -->
+        <button id="resetButton" class="hidden">Reset</button>
+    </div>
+</section>
+
+
     <script src="script.js"></script>
 </body>
 </html>

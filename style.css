@@ -67,7 +67,7 @@ body {
     margin-bottom: 2rem;
 }
 
-.cta-button {
+#getStartedButton {
     background-color: #ff6b6b;
     color: white;
     padding: 0.75rem 2rem;
@@ -78,7 +78,7 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.cta-button:hover {
+#getStartedButton:hover {
     background-color: #ff4c4c;
 }
 
@@ -86,8 +86,8 @@ body {
     display: none;
 }
 
+/* Input Section Styling */
 #inputSection {
-    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -98,53 +98,115 @@ body {
     text-align: center;
 }
 
+/* Input section */
 #inputContainer {
     position: relative;
-    max-width: 1000px; /* Increased max-width */
+    max-width: 1200px; /* Increased max-width */
     width: 95%;         /* Take up more screen space */
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  textarea {
+}
+
+#inputBox {
     width: 100%;
-    height: 400px;
-    padding: 20px;
-    padding-right: 120px; /* Space for the button */
-    padding-bottom: 60px; /* Space for the summarize/reset button */
+    height: 400px; /* Default height for the input area */
+    padding: 15px;
     border: 1px solid #ccc;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
+    color: white;
     font-size: 16px;
     resize: none;
+    transition: all 0.3s ease; /* Smooth transition */
+    margin-bottom: 20px; /* Space for the button */
     box-sizing: border-box;
-    margin-bottom: 20px;
-    position: relative;
+    position: relative; /* Make sure buttons stay inside this container */
 }
-  #submitButton {
-    position: absolute;
-    bottom: 40px;
-    right: 40px;
-    padding: 10px 20px;
+
+button {
+    padding: 10px 30px;
     font-size: 15px;
-    border-radius: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 5px;
+}
+
+#submitButton {
     background-color: #007bff;
     color: white;
     border: none;
-    cursor: pointer;
-    z-index: 10;
-    transition: background-color 0.3s ease;
-  }
-  
-  #submitButton:hover {
+    margin-top: 20px;
+}
+
+#submitButton:hover {
     background-color: #0056b3;
-  }
-  
-  #resetButton {
-    margin-top: 10px;
+}
+
+/* Positioning back button with summarize button inside the input container */
+#buttonContainer {
+        position: absolute;
+        bottom: 30px; /* Position buttons at the bottom of the input area */
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 15px;
+}
+
+
+/* Styling for the Back Button */
+.back-button {
+    display: none;
+    position: absolute;
+    top: 10px; /* Adjust this to control the vertical positioning */
+    right: 10px; /* Align it flush to the right */
+    background-color: #ff4c4c; /* Match your design style */
+    color: white;
+    border: none;
+    padding: 8px 12px; /* Smaller padding for a smaller button */
+    font-size: 14px; /* Smaller font size */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #ff6b6b;
+}
+
+
+/* Output section */
+/* Styling for the output container to avoid scrolling */
+#outputContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px; /* Make sure this is a reasonable width */
+    margin: 0 auto;
+    position: relative;
+}
+
+#outputBox {
+    width: 100%; /* Ensure it takes the full width */
+    height: 400px; /* Control the height here */
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+    resize: none;
+    margin-bottom: 20px; /* Give space for the Reset button */
+    box-sizing: border-box;
+}
+
+#resetButton {
+    display: none; /* Hidden initially */
     padding: 10px 25px;
     font-size: 16px;
     border: none;
@@ -152,29 +214,23 @@ body {
     background-color: #dc3545;
     color: white;
     cursor: pointer;
-    display: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  #resetButton:hover {
-    background-color: #c82333;
-  }
-  
-/* Initially hide the back button */
-.back-button {
-    display: none;
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    background-color: #fff;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.back-button:hover {
-    background-color: #555;
+#resetButton:hover {
+    background-color: #c82333;
+}
+
+/* When the Summarize button is clicked: */
+#inputBox.shrunk {
+    width: 100%; /* Shrink the input width */
+    height: 300px; /* Shrink the input height */
+    margin-bottom: 10px;
+    font-size: 14px; /* Adjust font size */
+    padding: 5px; /* Adjust padding */
+    transition: all 0.3s ease; /* Smooth transition */  
+}
+
+#outputBox.expanded {
+    height: 400px; /* Increase the output box height */
 }

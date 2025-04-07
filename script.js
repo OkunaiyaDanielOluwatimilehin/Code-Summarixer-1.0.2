@@ -1,9 +1,37 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const button = document.getElementById("submitButton");
+    const getStartedButton = document.getElementById("getStartedButton");
+    const inputSection = document.getElementById("inputSection");
+    const heroSection = document.getElementById("heroSection");
+    const submitButton = document.getElementById("submitButton");
+    const resetButton = document.getElementById("resetButton");
+    const inputBox = document.getElementById("inputBox");
     const outputBox = document.getElementById("outputBox");
+    const backButton = document.querySelector(".back-button");
 
-    button.addEventListener("click", async function() {
-        const inputText = document.getElementById("inputBox").value;
+    // Add event listener to "Get Started" button
+    getStartedButton.addEventListener("click", function() {
+        // Hide the hero section and show the input section
+        heroSection.classList.add("hidden");
+        inputSection.classList.remove("hidden");
+
+        // Show the back button (aligned to the right of the textarea)
+        backButton.style.display = "inline-block";
+    });
+
+    // Go back to the hero section when back button is clicked
+    backButton.addEventListener("click", function() {
+        inputSection.classList.add("hidden");
+        heroSection.classList.remove("hidden");
+
+        // Hide the back button again when returning to the hero section
+        backButton.style.display = "none";
+    });
+    
+
+    
+    // Handle Summarize button click
+    submitButton.addEventListener("click", async function() {
+        const inputText = inputBox.value;
 
         if (inputText.trim() === "") {
             outputBox.style.display = "none";
@@ -14,8 +42,13 @@ document.addEventListener("DOMContentLoaded", function() {
         outputBox.style.display = "block";
         outputBox.value = "Processing...";
 
+        // Add shrink class to input box and expand class to output box
+        inputBox.classList.add("shrunk");
+        outputBox.classList.add("expanded");
+
+        // Show the reset button
+        resetButton.style.display = "inline-block";
         try {
-            // Make the request to the backend
             const response = await fetch('/api/summarize', {
                 method: 'POST',
                 headers: {
@@ -23,63 +56,31 @@ document.addEventListener("DOMContentLoaded", function() {
                 },
                 body: JSON.stringify({ text: inputText })
             });
-            
 
-            // Check if the response is ok
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
 
-            // Parse the response JSON
             const data = await response.json();
-            console.log("Backend Response:", data);
 
-            // Handle the result based on the data returned from the server
             if (data.status === true && data.result) {
-                outputBox.value = data.result; // display the summary
+                outputBox.value = data.result;
             } else {
-                outputBox.value = data.error || "Failed to get summary."; // fallback error message
+                outputBox.value = data.error || "Failed to get summary.";
             }
         } catch (error) {
-            // Handle any errors that occurred during the fetch
-            console.error("Error:", error);
             outputBox.value = "An error occurred. Please try again.";
         }
+
+        // Show the Reset button after the summary is processed
+        resetButton.style.display = "inline-block";
     });
 
-    // Reset the form when the reset button is clicked
+    // Handle Reset button click
     resetButton.addEventListener("click", function() {
-        inputBox.style.width = "100%"; // Reset input box to default size
-        inputBox.style.position = "relative"; // Reset position
-        inputBox.value = ""; // Clear input box
-        outputBox.style.display = "none"; // Hide output box
-        outputBox.value = ""; // Clear output box
-        resetButton.style.display = "none"; // Hide reset button
+        inputBox.value = "";
+        outputBox.style.display = "none";
+        outputBox.value = "";
+        resetButton.style.display = "none"; // Hide the Reset button after clicking
     });
-
 });
-
-function scrollToInput() {
-    const inputSection = document.getElementById("inputSection"); // wrap input area in this ID
-    if (inputSection) {
-      inputSection.scrollIntoView({ behavior: "smooth" });
-    }
-  }
-  
-  function showInputSection() {
-    document.getElementById("heroSection").classList.add("hidden");
-    document.getElementById("inputSection").classList.remove("hidden");
-    // Show the back button when input section is active
-    document.querySelector(".back-button").style.display = "block";
-}
-
-function goBack() {
-    document.getElementById("inputSection").classList.add("hidden");
-    document.getElementById("heroSection").classList.remove("hidden");
-    // Hide the back button when going back to the hero section
-    document.querySelector(".back-button").style.display = "none";
-}
-
-
-
-const backendUrl = "https://code-summarizer-101.vercel.app/"; 
