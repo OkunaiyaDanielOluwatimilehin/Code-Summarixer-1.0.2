@@ -1,86 +1,87 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
+    const button = document.getElementById("submitButton");
+    const outputBox = document.getElementById("outputBox");
+    const inputBox = document.getElementById("inputBox");
+    const resetButton = document.getElementById("resetButton");
+    const heroSection = document.querySelector(".heroSection");
     const getStartedButton = document.getElementById("getStartedButton");
     const inputSection = document.getElementById("inputSection");
-    const heroSection = document.getElementById("heroSection");
-    const submitButton = document.getElementById("submitButton");
-    const resetButton = document.getElementById("resetButton");
-    const inputBox = document.getElementById("inputBox");
-    const outputBox = document.getElementById("outputBox");
-    const backButton = document.querySelector(".back-button");
-
-    // Add event listener to "Get Started" button
-    getStartedButton.addEventListener("click", function() {
-        // Hide the hero section and show the input section
-        heroSection.classList.add("hidden");
-        inputSection.classList.remove("hidden");
-
-        // Show the back button (aligned to the right of the textarea)
-        backButton.style.display = "inline-block";
+    const backButton = document.getElementById("backButton");
+    
+  
+    // ✅ This is what you're looking for:
+    getStartedButton.addEventListener("click", function () {
+      heroSection.classList.add("hidden");
+      inputSection.classList.remove("hidden");
     });
+    
+    // Hide back button on page load
+  backButton.style.display = "none";
+  
+    button.addEventListener("click", async function () {
+      const inputText = inputBox.value;
+  
+      if (inputText.trim() === "") {
+        outputBox.classList.add("hidden");
+        alert("Please enter some text.");
+        return;
+      }
 
-    // Go back to the hero section when back button is clicked
-    backButton.addEventListener("click", function() {
+       // Shrink input and expand output
+    inputBox.classList.add("shrunk");
+    outputBox.classList.add("expanded");
+    outputBox.style.display = "block";
+    outputBox.value = "Processing...";
+
+       // Show reset and back button ONLY after summarizing starts
+       resetButton.style.display = "inline-block";
+       backButton.style.display = "inline-block";
+  
+      outputBox.classList.remove("hidden");
+      outputBox.value = "Processing...";
+      resetButton.classList.remove("hidden");
+  
+      try {
+        const response = await fetch("/api/summarize", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ text: inputText }),
+        });
+  
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+  
+        const data = await response.json();
+        console.log("Backend Response:", data);
+  
+        if (data.status === true && data.result) {
+          outputBox.value = data.result;
+        } else {
+          outputBox.value = data.error || "Failed to get summary.";
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        outputBox.value = "An error occurred. Please try again.";
+      }
+    });
+    backButton.addEventListener("click", function () {
+        // Go back to hero section
         inputSection.classList.add("hidden");
         heroSection.classList.remove("hidden");
-
-        // Hide the back button again when returning to the hero section
-        backButton.style.display = "none";
-    });
-    
-
-    
-    // Handle Summarize button click
-    submitButton.addEventListener("click", async function() {
-        const inputText = inputBox.value;
-
-        if (inputText.trim() === "") {
-            outputBox.style.display = "none";
-            alert("Please enter some text.");
-            return;
-        }
-
-        outputBox.style.display = "block";
-        outputBox.value = "Processing...";
-
-        // Add shrink class to input box and expand class to output box
-        inputBox.classList.add("shrunk");
-        outputBox.classList.add("expanded");
-
-        // Show the reset button
-        resetButton.style.display = "inline-block";
-        try {
-            const response = await fetch('/api/summarize', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ text: inputText })
-            });
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            const data = await response.json();
-
-            if (data.status === true && data.result) {
-                outputBox.value = data.result;
-            } else {
-                outputBox.value = data.error || "Failed to get summary.";
-            }
-        } catch (error) {
-            outputBox.value = "An error occurred. Please try again.";
-        }
-
-        // Show the Reset button after the summary is processed
-        resetButton.style.display = "inline-block";
+        // Reset input and output boxes
     });
 
-    // Handle Reset button click
-    resetButton.addEventListener("click", function() {
-        inputBox.value = "";
-        outputBox.style.display = "none";
-        outputBox.value = "";
-        resetButton.style.display = "none"; // Hide the Reset button after clicking
-    });
+    // RESET functionality
+  resetButton.addEventListener("click", function () {
+    inputBox.classList.remove("shrunk");
+    inputBox.value = "";
+    outputBox.value = "";
+    outputBox.classList.remove("expanded");
+    outputBox.style.display = "none";
+    resetButton.style.display = "none";
+    backButton.style.display = "none";
+  });
 });

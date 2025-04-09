@@ -5,43 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text Summarizer</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
+    <link rel="icon" href="/favicon_io/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
 <body>
     <nav id="navbar">
         <h1 id="logo">Code Summarizer 1.0</h1>
         <ul id="navLinks">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#about">About</a></li>
-        </ul>
+            <li><a href="./index.html" class="nav-link active">Home</a></li>
+            <li><a href="./features.html" class="nav-link">Features</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+          </ul>
+          
     </nav>
     <!-- Hero Section -->
-    <section class="hero" id="heroSection">
-        <div class="hero-content">
-            <h1>Simplify Your Code. Instantly.</h1>
-            <p>Paste your code, and let AI do the hard work. Get clean summaries in seconds.</p>
-            <button id="getStartedButton">Get Started</button> <!-- The "Get Started" button -->
-        </div>
-    </section>
+    <section class="heroSection">
+            <div class="hero-container">
+              <div class="hero-text">
+                <h1>Simplify Your Code, Amplify Your Focus</h1>
+                <p>
+                    Instantly turn complex lines of code into clear, easy-to-understand summaries.
+                    Whether you're a seasoned developer, a coding student, or just diving into tech, 
+                    our tool is built to help you save time, boost productivity, and understand your code at a glance
+                    <strong>Designed by developers, for developers</strong>
+                </p>
+                <button id="getStartedButton">Get Started</button>
+              </div>
+            </div>
+          </section>
+          
 
     <!-- Input Section (Initially Hidden) -->
 <section id="inputSection" class="hidden">
     <div id="inputContainer">
-        <textarea id="inputBox" placeholder="Enter your text here..."></textarea>
+        <textarea id="inputBox" placeholder="Enter your text here..." class="shrunk"></textarea>
+
+        <!-- Button  -->
         <div id="buttonContainer">
             <button id="submitButton">Summarize</button>
-            <button class="back-button" onclick="goBack()">← Back</button>
+            <button id="backButton" class="back-button" onclick="goBack()">← Back</button>
         </div>
     </div>
     <!-- Output Box -->
     <div id="outputContainer">
-        <textarea id="outputBox" placeholder="Summary will appear here..." readonly class="hidden"></textarea>
+        <textarea id="outputBox" placeholder="Summary will appear here..." readonly class="hidden" class="expand"></textarea>
         <!-- Reset Button Inside the Output Box -->
         <button id="resetButton" class="hidden">Reset</button>
     </div>
 </section>
 
+<!-- Features Section -->
+<section id="features">
+    <div class="features-container">
+      <h2>Our Key Features</h2>
+      <div class="feature">
+        <img src="/images/code.png" alt="Feature 1">
+        <h3>Fast Summarization</h3>
+        <p>Get instant summaries for any text, allowing you to focus on what's important.</p>
+        <button id="getStartedButton">Get Started</button>
+      </div>
+      <div class="feature">
+        <img src="/images/comfort.png" alt="Feature 2">
+        <h3>Easy to Use</h3>
+        <p>Simple and intuitive interface designed for developers, students, and beginners alike.</p>
+        <button id="getStartedButton">Get Started</button>
+      </div>
+      <div class="feature">
+        <img src="/images/programming.png" alt="Feature 3">
+        <h3>Works with Any Code</h3>
+        <p>Summarize code, comments, and even entire projects effortlessly.</p>
+        <button id="getStartedButton">Get Started</button>
+      </div>
+    </div>
+  </section>
+  
 
     <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/1f7c50f8ab.js" crossorigin="anonymous"></script>
 </body>
 </html>

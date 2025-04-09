@@ -14,8 +14,9 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-blend-mode: overlay;
-    height: 100vh;
+    /* height: 100vh; */
 }
+
 
 #navbar {
     width: 100%;
@@ -23,31 +24,69 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-/*     position: sticky; */
     top: 0;
     z-index: 1000;
 }
 
 #logo {
     color: white;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
+}
+#logo:hover{
+    font-size: 24px;
 }
 
 #navLinks {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 40px;
+    
 }
 
+/* Reset links */
 #navLinks a {
-    color: white;
+    position: relative;
     text-decoration: none;
+    color: white;
     font-size: 16px;
-}
+    padding: 5px 0;
+  }
+  
+  /* Stroke (underline) effect on hover */
+  #navLinks a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+    background-color: white;
+    transition: width 0.3s ease;
+  }
+  
+  /* Expand underline on hover */
+  #navLinks a:hover::after {
+    width: 100%;
+  }
+  
+  /* Active nav link with red underline */
+  #navLinks a.active::after {
+    width: 100%;
+    background-color: #FF4C4C; /* Red underline for active link */
+  }
+  
 
-/* Hero Styling */
-.hero {
+/* Hero section setup */
+.heroSection {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hero-container {
     height: 100vh;
     color: white;
     display: flex;
@@ -55,32 +94,55 @@ body {
     align-items: center;
     text-align: center;
     padding: 0 2rem;
-}
-
-.hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.hero-content p {
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
-}
+    }
+     
+    .hero-text h1 {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-text p {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem; 
+    }
+    
+    .hero-text button {
+        padding: 10px 20px;
+        background-color: #ff4c4c;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+    }
 
 #getStartedButton {
     background-color: #ff6b6b;
     color: white;
     padding: 0.75rem 2rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease-in right;
 }
 
 #getStartedButton:hover {
-    background-color: #ff4c4c;
+    background-color: #4128e7a3;
 }
+
+/* Fade-in animation for hero text */
+.hero-text h1, .hero-text p {
+    opacity: 0;
+    animation: fadeIn 5s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
 
 .hidden {
     display: none;
@@ -92,7 +154,7 @@ body {
     align-items: center;
     flex-direction: column;
     padding: 2rem;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: transparent;
     min-height: 100vh;
     color: white;
     text-align: center;
@@ -110,65 +172,69 @@ body {
 }
 
 #inputBox {
-    width: 100%;
-    height: 400px; /* Default height for the input area */
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-    font-size: 16px;
-    resize: none;
-    transition: all 0.3s ease; /* Smooth transition */
-    margin-bottom: 20px; /* Space for the button */
-    box-sizing: border-box;
-    position: relative; /* Make sure buttons stay inside this container */
+        width: 100%;
+        height: 400px;
+        padding: 15px;
+        font-size: 16px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        resize: vertical;    
+        background: transparent; 
+        color: white;
 }
 
 button {
-    padding: 10px 30px;
     font-size: 15px;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin: 5px;
-}
+} 
 
 #submitButton {
-    background-color: #007bff;
+    background-color: #085bb5;
     color: white;
     border: none;
     margin-top: 20px;
-}
-
-#submitButton:hover {
-    background-color: #0056b3;
+    padding: 10px 30px;
+} 
+ #submitButton:hover {
+    background-color: #2e86e3;
 }
 
 /* Positioning back button with summarize button inside the input container */
 #buttonContainer {
         position: absolute;
-        bottom: 30px; /* Position buttons at the bottom of the input area */
+        bottom: 20px; /* Position buttons at the bottom of the input area */
         left: 0;
         width: 100%;
         display: flex;
         justify-content: space-between;
         padding: 0 15px;
 }
-
+#buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    width: 100%;
+    flex-wrap: wrap;
+    /* gap: 10px; */
+    align-items: center;
+  }
 
 /* Styling for the Back Button */
 .back-button {
     display: none;
     position: absolute;
-    top: 10px; /* Adjust this to control the vertical positioning */
-    right: 10px; /* Align it flush to the right */
+    top: 20px;  
+    right: 10px; 
     background-color: #ff4c4c; /* Match your design style */
     color: white;
     border: none;
-    padding: 8px 12px; /* Smaller padding for a smaller button */
+    padding: 10px 30px;
     font-size: 14px; /* Smaller font size */
-    border-radius: 5px;
+    border-radius: 2px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -176,8 +242,11 @@ button {
 .back-button:hover {
     background-color: #ff6b6b;
 }
-
-
+#backButton {
+    display: none;
+    margin-top: 10px;
+  }
+  
 /* Output section */
 /* Styling for the output container to avoid scrolling */
 #outputContainer {
@@ -223,14 +292,98 @@ button {
 
 /* When the Summarize button is clicked: */
 #inputBox.shrunk {
-    width: 100%; /* Shrink the input width */
-    height: 300px; /* Shrink the input height */
+    width: 100%;
+    height: 300px;
     margin-bottom: 10px;
-    font-size: 14px; /* Adjust font size */
-    padding: 5px; /* Adjust padding */
-    transition: all 0.3s ease; /* Smooth transition */  
+    font-size: 14px;
+    padding: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  #outputBox.expanded {
+    height: 500px;
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  /* Features section */
+  #features {
+    padding: 50px 0;
+    /* background-color: #f4f4f4;
+    opacity: 90%; */
+  }
+  
+  .features-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .features-container h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: white;
+  }
+  
+  .feature {
+    display: inline-block;
+    width: 30%;
+    padding: 20px;
+    text-align: center;
+    margin: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .feature img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 20px;
+  }
+  
+  .feature h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+  .feature p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+
+  /* Feature Pages */
+
+  #features-page {
+    padding: 50px 0;
+    background-color: #fff;
 }
 
-#outputBox.expanded {
-    height: 400px; /* Increase the output box height */
+.features-page-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.features-page-container h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.feature-detail {
+    margin-bottom: 40px;
+}
+
+.feature-detail h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.feature-detail p {
+    font-size: 18px;
+    color: #555;
 }
