@@ -17,7 +17,7 @@ export default async function handler(req, res) {
       { text },
       {
         headers: {
-          'x-rapidapi-key': process.env.RAPID_API_KEY,
+         'x-rapidapi-key': process.env.RAPID_API_KEY,
           'x-rapidapi-host': 'open-ai21.p.rapidapi.com',
           'Content-Type': 'application/json'
         }
