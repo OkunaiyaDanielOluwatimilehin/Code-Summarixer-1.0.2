@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Section references
   const heroSection = document.querySelector(".heroSection");
-  const inputSection = document.getElementById("inputSection");
-  const outputContainer = document.getElementById("outputContainer");
   const outputBox = document.getElementById("outputBox");
-  const backButton = document.getElementById("backButton");
-  const submitButton = document.getElementById("submitButton");
+  const inputBox = document.getElementById("inputBox");
   const resetButton = document.getElementById("resetButton");
-  const heroStartBtn = document.getElementById("getStartedButton");
+  const backButton = document.getElementById("backButton");
   const typewriterEl = document.getElementById("typewriter");
+  const submitButton = document.getElementById("submitButton");
+  const getStartedButton = document.getElementById("getStartedButton");
+  const inputSection = document.getElementById("inputSection");
 
   // ========== Typewriter Effect ==========
   if (typewriterEl) {
@@ -44,75 +44,82 @@ document.addEventListener("DOMContentLoaded", function () {
     typeEffect();
   }
 
-  // ========== Hero Get Started ==========
-  if (heroStartBtn) {
-    heroStartBtn.addEventListener("click", () => {
-      console.log("Hero Get Started clicked");
-      heroSection.classList.add("hidden");
-      inputSection.classList.remove("hidden");
-      inputSection.scrollIntoView({ behavior: "smooth" });
-    });
-  }
-
-  // ========== Submit/Summarize ==========
-  if (submitButton) {
-    submitButton.addEventListener("click", () => {
-      console.log("Summarize clicked");
-      outputBox.value = "This is a summarized version of the input text.";
-      outputContainer.classList.remove("hidden");
-      resetButton.classList.remove("hidden");
-    });
-  }
-
-  // ========== Back ==========
-  if (backButton) {
-    backButton.addEventListener("click", () => {
-      console.log("Back clicked");
-      inputSection.classList.add("hidden");
-      heroSection.classList.remove("hidden");
-      heroSection.scrollIntoView({ behavior: "smooth" });
-    });
-  }
-
-  // ========== Reset ==========
-  if (resetButton) {
-    resetButton.addEventListener("click", () => {
-      outputContainer.classList.add("hidden");
-      resetButton.classList.add("hidden");
-      inputSection.classList.remove("hidden");
-      outputBox.value = "";
-    });
-  }
-  document.addEventListener("DOMContentLoaded", function () {
-    const testimonySection = document.getElementById("testimonySection");
-  
-    const testimonies = [
-      {
-        text: "This tool has been incredibly helpful for streamlining our coding process. Highly recommend it!",
-        author: "John Doe, Developer"
-      },
-      {
-        text: "A game changer for developers looking to save time. Simple and easy to use!",
-        author: "Jane Smith, Software Engineer"
-      }
-      // Add more testimonies as needed
-    ];
-  
-    testimonies.forEach(testimony => {
-      const testimonyDiv = document.createElement("div");
-      testimonyDiv.classList.add("testimony");
-      
-      const testimonyText = document.createElement("p");
-      testimonyText.textContent = `"${testimony.text}"`;
-      
-      const testimonyAuthor = document.createElement("h4");
-      testimonyAuthor.textContent = `- ${testimony.author}`;
-      
-      testimonyDiv.appendChild(testimonyText);
-      testimonyDiv.appendChild(testimonyAuthor);
-      
-      testimonySection.appendChild(testimonyDiv);
-    });
+  // ✅ Start: Toggle sections
+  getStartedButton.addEventListener("click", function () {
+    heroSection.classList.add("hidden");
+    inputSection.classList.remove("hidden");
   });
-  
+
+  // Hide back button on page load
+  backButton.style.display = "none";
+
+  // Main summarize logic
+  submitButton.addEventListener("click", async function () {
+    const inputText = inputBox.value;
+
+    if (inputText.trim() === "") {
+      outputBox.classList.add("hidden");
+      alert("Please enter some text.");
+      return;
+    }
+
+    // UI Changes on summarize
+    inputBox.classList.add("shrunk");
+    outputBox.classList.add("expanded");
+    outputBox.style.display = "block";
+    outputBox.value = "Processing...";
+    resetButton.style.display = "inline-block";
+    backButton.style.display = "inline-block";
+    outputBox.classList.remove("hidden");
+    resetButton.classList.remove("hidden");
+
+    try {
+      const response = await fetch("/api/summarize", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ text: inputText }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      console.log("Backend Response:", data);
+
+      if (data.status === true && data.result) {
+        outputBox.value = data.result;
+        document.getElementById("outputSection").classList.remove("hidden");
+      } else {
+        outputBox.value = data.error || "Failed to get summary.";
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      outputBox.value = "An error occurred. Please try again.";
+    }
+  });
+
+  // 🔙 Back button functionality
+  backButton.addEventListener("click", function () {
+    inputSection.classList.add("hidden");
+    heroSection.classList.remove("hidden");
+    inputBox.value = "";
+    outputBox.value = "";
+    outputBox.style.display = "none";
+    resetButton.style.display = "none";
+    backButton.style.display = "none";
+  });
+
+  // 🔄 Reset functionality
+  resetButton.addEventListener("click", function () {
+    inputBox.classList.remove("shrunk");
+    inputBox.value = "";
+    outputBox.value = "";
+    outputBox.classList.remove("expanded");
+    outputBox.style.display = "none";
+    resetButton.style.display = "none";
+    backButton.style.display = "none";
+  });   
 });

@@ -11,7 +11,30 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: 'League Spartan', sans-serif;
+  
 }
+
+/* Background for homepage only */
+body.home-page {
+  background: 
+  linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2)),
+  url('./wesley-ford-biBRoGc7ir0-unsplash.jpg') no-repeat center center/cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Optional: Clear background for other pages */
+body.about-body {
+  background: 
+  linear-gradient(#a61a1abd, rgba(0,0,0,0.2), #0a0aaab3),
+  url('/images/pexels-dhiren-13947197.jpg') no-repeat center center/cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* navbar */
 #navbar {
   background-color: transparent;
   position: absolute;
@@ -38,11 +61,24 @@ html, body {
     font-size: 42px;
     color: #FF4C4C
 }
+#navLinks button{
+    background-color: #FF4C4C;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 20px 0 20px;
+}
+
+#navLinks button:hover {
+    color: #FF4C4C; /* Change color on hover */
+}
 
 #navLinks {
     list-style: none;
     display: flex;
-    gap: 40px;
+    gap: 30px;
     
 }
 
@@ -79,7 +115,7 @@ html, body {
   }
   
   .typewriter-sub {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: 500;
     color: white;
     display: inline-block;
@@ -87,9 +123,9 @@ html, body {
   }
   
   #typewriter {
-    font-weight: 900;
-    font-size: 1.5rem;
-    color: #007bff;
+    /* font-weight: 900; */
+    font-size: 1.2rem;
+    color: white;
     white-space: nowrap;
   }
   
@@ -99,45 +135,20 @@ html, body {
     width: 20ch;
   }
 }
-  
-  .feature {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.6s ease-in-out;
-  }
-  
-  .feature.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  section {
-    padding: 80px 5%;
-  }
-  
-  .features-container {
-    max-width: 1200px;
-    margin: auto;
-  }
-  
-  .feature img {
-    width: 100px;
-    margin-bottom: 20px;
-  }
+ 
     
-
 /* Hero section setup */
 .heroSection {
-    background: 
-      linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-      url('/images/pexels-markusspiske-4383298.jpg') no-repeat center center/cover;
     color: white;
     padding-top: 100px;
-    display: flex;
+    display: column;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
     min-height: 70vh; 
+    width:100%
+   
     }
     
 .hero-container {
@@ -148,6 +159,9 @@ html, body {
     align-items: center;
     text-align: center;
     padding: 0 2rem;
+    border-bottom: 3px solid white;
+    width: 40%; /* Adjusted width to make the stroke longer */
+    margin: 0 auto 20px; /* Center the border and add spacing below */
     }
 
     .hero-text {
@@ -158,6 +172,7 @@ html, body {
 .hero-text h1 {
         font-size: 3rem;
         margin-bottom: 1.5rem;
+        font-variant: Upper-case;
     }
     
 .hero-text p {
@@ -173,7 +188,7 @@ html, body {
         color: white;
         font-size: 1rem;
         cursor: pointer;
-        margin-bottom: 40px;
+        margin-bottom: 15px;
     }
 
 #getStartedButton {
@@ -212,9 +227,6 @@ html, body {
 
 .about-section-2 {
   padding: 60px 20px;
-  background: 
-  linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2)),
-  url('/images/pexels-dhiren-13947197.jpg') no-repeat center center/cover;
   text-align: center;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -282,6 +294,9 @@ html, body {
     min-height: 100vh;
     color: white;
     text-align: center;
+    background: 
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url('/images/technology-785742_1920.jpg') no-repeat center center/cover;
 }
 
 /* Input section */
@@ -289,7 +304,7 @@ html, body {
     position: relative;
     max-width: 1200px; /* Increased max-width */
     width: 95%;         /* Take up more screen space */
-    margin: 0 auto;
+    margin: 50px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -302,7 +317,7 @@ html, body {
         font-size: 16px;
         box-sizing: border-box;
         border: 1px solid #ccc;
-        border-radius: 6px;
+        border-radius: 10px;
         resize: vertical;    
         background: transparent; 
         color: white;
@@ -433,11 +448,7 @@ button {
  
 /* about page */
 #aboutPage {
-    background: 
-    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-    url('/images/pexels-ron-lach-9783812.jpg') no-repeat center center/cover;
   color: white;
-  /* padding-top: 100px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -445,17 +456,15 @@ button {
   overflow: hidden;
   min-height: 50%;
   color: white;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
     
 }
 
 .about-container {
   max-width: 1000px;
   margin: 0 auto;
-  background: var(--card-bg);
+  border-bottom: 1px solid white;
   padding: 40px 30px;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
   text-align: center;
 }
 
@@ -486,9 +495,6 @@ button {
 
 .about-section {
   padding: 60px 20px;
-  background: 
-  linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-  url('/images/technology-785742_1920.jpg') no-repeat center center/cover;
   text-align: center;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -503,7 +509,6 @@ button {
 .tech-scroll {
   overflow: hidden;
   width: 100%;
-  max-width: 1000px;
   margin: 0 auto;
   position: relative;
 }
@@ -545,36 +550,6 @@ button {
 .tech-scroll:hover .tech-list {
   animation-play-state: paused;
 }
-#testimonySection {
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-#testimonySection h3 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.testimony {
-  margin: 20px 0;
-  padding: 15px;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.testimony p {
-  font-style: italic;
-  color: #333;
-}
-
-.testimony h4 {
-  text-align: right;
-  font-weight: bold;
-  color: #555;
-}
 
 .contact-section {
   /* padding: 40px; */
@@ -592,20 +567,7 @@ button {
   flex-wrap: wrap;
 }
 
-.contact-header button {
-  background-color: #c82333;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
 
-.contact-header button:hover {
-  background-color: #dc3545;
-}
 
 .social-icons {
   display: flex;
@@ -665,8 +627,7 @@ form button[type="submit"]:hover {
 /* footer */
 
 .site-footer {
-  background-color: #222;
-  opacity: 75%;
+  background: transparent;
   color: #ccc;
   padding: 30px 20px;
   text-align: center;
