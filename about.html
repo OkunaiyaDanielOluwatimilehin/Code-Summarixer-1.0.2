@@ -20,53 +20,107 @@
     <ul id="navLinks">
         <li><a href="./index.html" class="nav-link">Home</a></li>
         <li><a href="./about.html" class="nav-link active">About</a></li>
-        <li> <button id="toggleFormBtn">Get in Touch</button></li>
+        <li><a href="#" id="contactNavBtn" class="contact-btn">Contact Me</a></li>
       </ul>
 </nav>
 
-    <section id="aboutPage">
-      <div class="about-container">
-        <div class="about-intro">
-          <h2>About Code Summarizer 1.0</h2>
-          <p>
-            Our goal is to simplify the complexity of code and boost productivity for developers and learners alike. Whether you're debugging, learning a new language, or just trying to understand someone else's code, we've got your back.
-          </p>
-        </div>
+
+<div id="aboutContent"> 
+  <section id="aboutPage">
+    <div class="about-container">
+      <div class="about-intro">
+        <h2>About Code Summarizer 1.0</h2>
+        <p>
+          Our goal is to simplify the complexity of code and boost productivity for developers and learners alike. Whether you're debugging, learning a new language, or just trying to understand someone else's code, we've got your back.
+        </p>
       </div>
-    </section>
-    
-      <div class="about-section">
-      <h2>Tech Behind the Magic</h2>
-      <div class="tech-scroll">
-        <ul class="tech-list">
-          <li><i class="fab fa-html5"></i> HTML</li>
-          <li><i class="fab fa-css3-alt"></i> CSS</li>
-          <li><i class="fab fa-js-square"></i> JavaScript</li>
-          <li><i class="fab fa-node-js"></i> Node.js</li>
-          <li><i class="fas fa-server"></i> Express</li>
-          <li><i class="fas fa-robot"></i> OpenAI GPT</li>
-          <li><i class="fas fa-rocket"></i> Vercel</li>
-        </ul>
-      </div>
-    </div>
-      <div class="contact-section">
-                <div class="contact-header">
-                </div>
-              
-                <form id="contactForm" class="hidden">
-                  <input type="text" placeholder="Your Name" required>
-                  <input type="email" placeholder="Your Email" required>
-                  <textarea placeholder="Your Message" required></textarea>
-                  <button type="submit">Send Message</button>
-                </form>
-              </div>
-              
-          </div>
-        </div>
-      
     </div>
   </section>
-    </section>
+  
+    <div class="about-section">
+    <h2>Tech Behind the Magic</h2>
+    <div class="tech-scroll">
+      <ul class="tech-list">
+        <li><i class="fab fa-html5"></i> HTML</li>
+        <li><i class="fab fa-css3-alt"></i> CSS</li>
+        <li><i class="fab fa-js-square"></i> JavaScript</li>
+        <li><i class="fab fa-node-js"></i> Node.js</li>
+        <li><i class="fas fa-server"></i> Express</li>
+        <li><i class="fas fa-robot"></i> OpenAI GPT</li>
+        <li><i class="fas fa-rocket"></i> Vercel</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<section>
+  <h2>What People Are Saying</h2>
+  <div class="testimonials-container">
+    <div class="testimonial active">
+      <p>"This app is a game-changer! It's so easy to use and has saved me so much time."</p>
+      <div class="rating">
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9734;</span>
+      </div>
+      <p class="author">- John Doe</p>
+    </div>
+
+    <div class="testimonial">
+      <p>"Incredibly accurate and reliable. The summary feature is perfect for quick reviews!"</p>
+      <div class="rating">
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+      </div>
+      <p class="author">- Jane Smith</p>
+    </div>
+
+    <div class="testimonial">
+      <p>"Love the clean interface and speed. I use it daily!"</p>
+      <div class="rating">
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+      </div>
+      <p class="author">- Alex Turner</p>
+    </div>
+  </div>
+</section>
+
+    
+
+    <!-- Contact Section -->
+    
+    <div id="contactSection" class="contact-section hidden">
+      <h2>Get in Touch</h2>
+      <p>I'd love to hear from you! Drop a message below.</p>
+    
+      <form
+      id="contactForm"
+      action="https://formspree.io/f/xqapjzzy"
+      method="POST"
+    >
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    
+    </div>
+
+    <div id="toast" class="toast hidden">Thank you for contacting me! 🎉</div>
+
+    
+    
+    
+    <!-- Footer -->
 
     <footer class="site-footer">
       <div class="footer-content">
@@ -85,16 +139,24 @@
       </div>
     </div>
     </footer>
+    <script>
+      const contactBtn = document.getElementById("contactNavBtn");
+      const aboutContent = document.getElementById("aboutContent");
+      const contactSection = document.getElementById("contactSection");
     
-      <script src="script.js"></script>
-      <script>
-        const toggleBtn = document.getElementById("toggleFormBtn");
-        const contactForm = document.getElementById("contactForm");
-      
-        toggleBtn.addEventListener("click", () => {
-          contactForm.classList.toggle("hidden");
-        });
-      </script>
-      
-    </body>
+      contactBtn.addEventListener("click", () => {
+        aboutContent.classList.add("hidden");
+        contactSection.classList.remove("hidden");
+        contactSection.scrollIntoView({ behavior: "smooth" });
+      });
+
+      const goBackBtn = document.getElementById("goBackBtn");
+    goBackBtn.addEventListener("click", () => {
+    contactForm.classList.add("hidden");
+    aboutSection.style.display = "block";
+    techSection.style.display = "block";
+});
+  </script>  
+  <script src="test.js"></script>  
+</body>
     </html>
