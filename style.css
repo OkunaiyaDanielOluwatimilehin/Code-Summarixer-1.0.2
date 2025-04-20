@@ -8,23 +8,14 @@
 }
 
 html, body {
-  margin: 0;
-  padding: 0;
-  font-family: 'League Spartan', sans-serif;
-  scroll-behavior: smooth;
-  
-  
+    font-family: 'League Spartan', sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: black; /* or your image/gradient */
+    overflow-x: hidden; 
 }
 
-/* Background for homepage only */
-body.home-page {
-  background: 
-  linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2)),
-  url('./wesley-ford-biBRoGc7ir0-unsplash.jpg') no-repeat center center/cover;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
 
 /* Optional: Clear background for other pages */
 body.about-body {
@@ -146,19 +137,13 @@ body.about-body {
     
 /* Hero section setup */
 .heroSection {
-    color: white;
-    padding-top: 120px;
-    display: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    min-height: 70vh; 
-    width:100%;
-    text-align: center;
-    margin-bottom: 50px;
-   }
-    
+  background: 
+    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)),
+    url('./wesley-ford-biBRoGc7ir0-unsplash.jpg') no-repeat center center/cover;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
 .hero-container {
     /* height: 60vh;  */
     color: white;
@@ -290,6 +275,19 @@ body.about-body {
   animation-play-state: paused;
 }
 
+/* summarizer wrapper */
+#summarizerWrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: 
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url('/images/technology-785742_1920.jpg') no-repeat center center/cover;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 /* Input Section Styling */
 #inputSection {
     justify-content: center;
@@ -297,12 +295,8 @@ body.about-body {
     flex-direction: column;
     padding: 2rem;
     background-color: transparent;
-    min-height: 100vh;
     color: white;
     text-align: center;
-    background: 
-    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-    url('/images/technology-785742_1920.jpg') no-repeat center center/cover;
 }
 
 /* Input section */
@@ -419,6 +413,7 @@ button {
     box-sizing: border-box;
 }
 
+
 #resetButton {
     display: none; /* Hidden initially */
     padding: 10px 30px;
@@ -434,6 +429,11 @@ button {
 #resetButton:hover {
     background-color: #c82333;
 }
+
+.hidden {
+  display: none !important;
+}
+
 
 /* When the Summarize button is clicked: */
 #inputBox.shrunk {
@@ -569,6 +569,16 @@ button {
   margin: 0 auto;
 }
 
+.footer-content h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: white;
+}
+.footer-content p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: white;
+}
 .footer-links {
   list-style: none;
   padding: 0;
@@ -703,49 +713,6 @@ button {
   background-color: #ffffff10;
   border-radius: 10px;
   backdrop-filter: blur(10px);
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-  #navbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  #navLinks {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .hero-text h1 {
-    font-size: 2.5rem;
-  }
-
-  .hero-text p {
-    font-size: 1rem;
-  }
-
-  .about-intro h2 {
-    font-size: 2rem;
-  }
-
-  .about-intro p {
-    font-size: 1rem;
-  }
-}
-.hidden {
-  display: none;
-}
-
-#navbar .contact-btn {
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 

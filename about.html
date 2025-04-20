@@ -51,7 +51,7 @@
       </ul>
     </div>
   </div>
-</div>
+
 
 <section>
   <h2>What People Are Saying</h2>
@@ -93,6 +93,27 @@
     </div>
   </div>
 </section>
+   
+<!-- footer -->
+<footer id="site-footer">
+  <div class="footer-content">
+    <p>&copy; 2025 Code Summarizer. All rights reserved.</p>
+    <ul class="footer-links">
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./about.html">About</a></li>
+    </ul>
+  </div>
+  <div class="social-icons-2">
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+    <a href="#"><i class="fab fa-github"></i></a>
+  </div>
+</div>
+</footer>
+  </section>
+  
+</div>
 
     
 
@@ -101,62 +122,18 @@
     <div id="contactSection" class="contact-section hidden">
       <h2>Get in Touch</h2>
       <p>I'd love to hear from you! Drop a message below.</p>
-    
-      <form
-      id="contactForm"
-      action="https://formspree.io/f/xqapjzzy"
-      method="POST"
-    >
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-    
-    </div>
-
-    <div id="toast" class="toast hidden">Thank you for contacting me! 🎉</div>
-
-    
-    
-    
-    <!-- Footer -->
-
-    <footer class="site-footer">
-      <div class="footer-content">
-        <p>&copy; 2025 Code Summarizer. All rights reserved.</p>
-        <ul class="footer-links">
-          <li><a href="./index.html">Home</a></li>
-          <li><a href="./features.html">Features</a></li>
-          <li><a href="./about.html">About</a></li>
-        </ul>
-      </div>
-      <div class="social-icons-2">
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-linkedin"></i></a>
-        <a href="#"><i class="fab fa-github"></i></a>
-      </div>
-    </div>
-    </footer>
-    <script>
-      const contactBtn = document.getElementById("contactNavBtn");
-      const aboutContent = document.getElementById("aboutContent");
-      const contactSection = document.getElementById("contactSection");
-    
-      contactBtn.addEventListener("click", () => {
-        aboutContent.classList.add("hidden");
-        contactSection.classList.remove("hidden");
-        contactSection.scrollIntoView({ behavior: "smooth" });
-      });
-
-      const goBackBtn = document.getElementById("goBackBtn");
-    goBackBtn.addEventListener("click", () => {
-    contactForm.classList.add("hidden");
-    aboutSection.style.display = "block";
-    techSection.style.display = "block";
-});
-  </script>  
-  <script src="test.js"></script>  
-</body>
+    <form
+  id="contactForm"
+  action="https://formspree.io/f/xqapjzzy"
+  method="POST"
+>
+  <input type="text" name="name" placeholder="Your Name" required>
+  <input type="email" name="email" placeholder="Your Email" required>
+  <textarea name="message" placeholder="Your Message" required></textarea>
+  <button type="submit">Send Message</button>
+  <button type="button" id="goBackButton">← Back to About</button>
+</form>
+</div>
+<script src="about.js"></script>
+  </body>
     </html>

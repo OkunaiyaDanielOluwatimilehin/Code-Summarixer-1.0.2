@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
-<body class="home-page">
+<body>
     <!-- Your homepage content here -->
   
     <nav id="navbar">
@@ -24,6 +24,31 @@
             <li><a href="./about.html" class="nav-link">About</a></li>
           </ul>
     </nav>
+
+    <section id="summarizerWrapper" class="hidden">
+           <!-- input section -->
+<section id="inputSection" class="hidden">
+  <div id="inputContainer">
+    <textarea id="inputBox" placeholder="Enter your text here..." class="shrunk"></textarea>
+
+    <!-- Button to summarize -->
+    <div id="buttonContainer">
+      <button id="submitButton">Summarize &#8629;</button>
+      <button id="backButton">← Back</button>
+    </div>
+  </div>
+</section>
+
+<!-- Output Box -->
+<section id="outputSection" class="hidden">
+  <div id="outputContainer">
+    <textarea id="outputBox" placeholder="Summary will appear here..." readonly></textarea>
+    <button id="resetButton">Reset</button>
+  </div>
+ </section>
+    
+
+    </section>
     
   <!-- 🔹 Main Content (initially hidden) -->
 
@@ -61,81 +86,53 @@
       </div>
     </div>
 
+    <!-- Testimonials -->
     <section>
-      <h2>What Developers Like <br> You Are Saying</h2>
-      <div class="testimonials-container">
-        <div class="testimonial active">
-          <p>"This app is a game-changer! It's so easy to use and has saved me so much time."</p>
-          <div class="rating">
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
-            <span class="star">&#9734;</span>
-          </div>
-          <p class="author">- John Doe</p>
-        </div>
-    
-        <div class="testimonial">
-          <p>"Incredibly accurate and reliable. The summary feature is perfect for quick reviews!"</p>
-          <div class="rating">
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
-          </div>
-          <p class="author">- Jane Smith</p>
-        </div>
-    
-        <div class="testimonial">
-          <p>"Love the clean interface and speed. I use it daily!"</p>
-          <div class="rating">
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
-          </div>
-          <p class="author">- Alex Turner</p>
-        </div>
+  <h2>What People Are Saying</h2>
+  <div class="testimonials-container">
+    <div class="testimonial active">
+      <p>"This app is a game-changer! It's so easy to use and has saved me so much time."</p>
+      <div class="rating">
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9734;</span>
       </div>
-    </section>
-    
-  </section>
+      <p class="author">- John Doe</p>
+    </div>
 
- 
-  <script src="test.js"></script>
-
-    <!-- input section -->
-    <section id="inputSection" class="hidden">
-      <div id="inputContainer">
-        <textarea id="inputBox" placeholder="Enter your text here..." class="shrunk"></textarea>
-    
-        <!-- Button to summarize -->
-        <div id="buttonContainer">
-          <button id="submitButton">Summarize &#8629;</button>
-          <button id="backButton">← Back</button>
-        </div>
+    <div class="testimonial">
+      <p>"Incredibly accurate and reliable. The summary feature is perfect for quick reviews!"</p>
+      <div class="rating">
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
       </div>
-    </section>
-    
-    <!-- Output Box -->
-    <section id="outputSection" class="hidden">
-      <div id="outputContainer">
-        <textarea id="outputBox" placeholder="Summary will appear here..." readonly></textarea>
-        <button id="resetButton">Reset</button>
-      </div>
-    </section>
-    
+      <p class="author">- Jane Smith</p>
+    </div>
 
+    <div class="testimonial">
+      <p>"Love the clean interface and speed. I use it daily!"</p>
+      <div class="rating">
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+      </div>
+      <p class="author">- Alex Turner</p>
+    </div>
+  </div>
+</section>
     
-<footer class="site-footer">
+<footer id="site-footer">
   <div class="footer-content">
     <p>&copy; 2025 Code Summarizer. All rights reserved.</p>
     <ul class="footer-links">
       <li><a href="./index.html">Home</a></li>
-      <li><a href="./features.html">Features</a></li>
       <li><a href="./about.html">About</a></li>
     </ul>
   </div>
@@ -147,7 +144,11 @@
   </div>
 </div>
 </footer>
-    <script src="script.js"></script>
+  </section>
+   
+
+
+  <script src="index.js"></script>
     <script src="https://kit.fontawesome.com/1f7c50f8ab.js" crossorigin="anonymous"></script> 
 </body>
 </html>
