@@ -1,37 +1,33 @@
-import { Configuration, OpenAIApi } from "openai";
+// If you are using ES Modules (which your import statement suggests):
+import OpenAI from 'openai';
 
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY, // It's best practice to use environment variables for your API key
 });
 
-const openai = new OpenAIApi(configuration);
-
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method Not Allowed' });
-  }
+  if (req.method === 'POST') {
+    const { text } = req.body;
 
-  const { text } = req.body;
+    if (!text) {
+      return res.status(400).json({ error: 'Please provide text to summarize.' });
+    }
 
-  if (!text) {
-    return res.status(400).json({ error: 'Input text is required.' });
-  }
+    try {
+      const completion = await openai.chat.completions.create({
+        model: "gpt-3.5-turbo", // Or your preferred model
+        messages: [
+          { role: "user", content: `Summarize the following text: ${text}` },
+        ],
+      });
 
-  try {
-    const completion = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
-      messages: [
-        { role: "system", content: "Summarize the following code or text:" },
-        { role: "user", content: text }
-      ],
-      temperature: 0.5,
-    });
-
-    const summary = completion.data.choices[0].message.content;
-
-    res.status(200).json({ result: summary, status: true });
-  } catch (error) {
-    console.error("OpenAI error:", error.message);
-    res.status(500).json({ error: "Failed to fetch summary from OpenAI." });
+      const summary = completion.choices[0].message.content;
+      res.status(200).json({ summary });
+    } catch (error) {
+      console.error("Error during summarization:", error);
+      res.status(500).json({ error: 'Failed to generate summary.' });
+    }
+  } else {
+    res.status(405).json({ error: 'Method Not Allowed' });
   }
 }
